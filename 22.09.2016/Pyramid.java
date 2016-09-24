@@ -2,6 +2,7 @@
 
 public class Pyramid {
     public static void main(String[] args){
+       try{ //check if user wrote whole number
     	int limit = Integer.parseInt(args[0]); // variable for the count of rows
 
     	for(int i = 1; i <= limit; i++){
@@ -15,5 +16,10 @@ public class Pyramid {
     		}
     		System.out.println();
     	}
+    }catch(NumberFormatException e){
+
+        System.out.println("Please, enter the whole number");
+
     }
-}
+  }
+ }

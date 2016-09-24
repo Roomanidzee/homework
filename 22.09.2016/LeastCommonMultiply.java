@@ -2,6 +2,7 @@
 
 public class LeastCommonMultiply {
  public static void main(String[] args){
+   try{ //check if user wrote whole numbers
     int a = Integer.parseInt(args[0]); // numbers a and b
     int b = Integer.parseInt(args[1]);
 
@@ -25,7 +26,13 @@ public class LeastCommonMultiply {
 
         if( k > 8 ){// there are 8 tries to find the least common multiply
             System.out.println("No such number");
+            break;
         }
     }
+  }catch(NumberFormatException e){
+
+    System.out.println("Please, enter the whole numbers");
+
   }
+ }
 }

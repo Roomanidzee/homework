@@ -2,18 +2,18 @@
 
 public class Circumference {
     public static void main(String[] args){
-    	double r;// radius of circle
+       try{ //check if user wrote a number
+    	double n = Double.parseDouble(args[0]);// radius of circle
     	double half1;// right half of the circle
     	double half2;// left halfof the circle
 
-    	r = 5;
 
-    	for(int i = 1; i <= 2 * r; i++){
+    	for(int i = 1; i <= 2 * n; i++){
 
-    	  for(int j = 1; j <= 2*r; j++){
+    	  for(int j = 1; j <= 2 * n; j++){
 
-    	  	half1 = r + Math.sqrt(r * r - (r - j) * (r - j));
-    	  	half2 = r - Math.sqrt(r * r - (r - j) * (r - j));
+    	  	half1 = n + Math.sqrt(n * n - (n - j) * (n - j));
+    	  	half2 = n - Math.sqrt(n * n - (n - j) * (n - j));
 
     	  	if(i > half2 && i < half1){
 
@@ -31,5 +31,10 @@ public class Circumference {
 
        }
 
+    }catch(NumberFormatException e){
+
+        System.out.println("Please, enter the number");
+
     }
+  }
 }

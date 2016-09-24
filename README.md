@@ -1,2 +1,4 @@
-# homework
-Homework for Informatics lessons (practice)
+# Kazan Federal University Programming Course
+
+# Homework
+Homework for Kazan Federal University Programming Course
