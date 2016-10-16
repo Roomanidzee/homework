@@ -46,7 +46,7 @@ public class Student {
 
     }
 
-    //getters and setters for or variables:
+    //getters and setters for all variables:
 
     void setSurname(String studentSurname){
 

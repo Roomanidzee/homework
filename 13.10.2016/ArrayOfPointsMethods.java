@@ -26,7 +26,7 @@ public class ArrayOfPointsMethods {
     	}
     }
 
-    void increaseArraySize(){// in case of ArrayIndexOutOfBoundsEception increase the size of Array
+    void increaseArraySize(){// in case of ArrayIndexOutOfBoundsException increase the size of Array
 
     	array = Arrays.copyOf(array, array.length * 2);
 
