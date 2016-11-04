@@ -10,6 +10,20 @@ public class ArithmeticProgression {
         double count = 2;
 
     	double Ak = 0;
+        if(k == 0){
+
+            System.out.println("a[k] = " + a1);
+            System.exit(0);
+
+        }
+
+        if(k == 1){
+
+            System.out.println("a[k] = " + a2);
+            System.exit(0);
+
+        }
+
     	for(int i = 2; i < k; i++){
 
     		Ak += a1 + d * count;
