@@ -12,8 +12,7 @@ public class Functions extends Event{
 
 	Calendar calendar = Calendar.getInstance();	// getting a day, month and year
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-	FileWriter writer;
-	File file = new File("" + dateFormat.format(calendar.getTime()) + ".txt");//generating name of file
+	
 	
 
 
@@ -28,41 +27,6 @@ public class Functions extends Event{
 	}
 
 	
-
-	protected void writeToFile(String[] notes){//this function writes to file
-
-		PrintWriter pw = new PrintWriter(file.getAbsoluteFile());
-
-		
-		try{
-
-                 if(!file.exists() ){
-
-                    file.createNewFile();
-
-                 }
-
-                 pw.print(notes);
-
-                 }catch(IOException err){
-
-        	     System.err.println("You have some error with file");
-
-                 }
-
-                 catch(FileNotFoundException e1){
-
-        	  System.err.println("You have some error with file");
-
-                 }
-
-		finally{
-
-                   pw.close();
-
-                 }     
-
-	}
 
 	protected void readAllAt(int index, String[] notes){//function for viewing pointly note
 

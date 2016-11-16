@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 
 
 public class InitFunction extends Event{
@@ -16,10 +17,13 @@ public class InitFunction extends Event{
 	        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 	        Scanner sc = new Scanner(System.in);//initializing input
 
+	        
+
 	        String[] notes = new String[NUMBER_OF_NOTES];//initializing of array
 	        int checkRatio = -1;//ratio for checking of null string
 	        int k = 100;//counts of commands for program
 	        int counter = 0;//index for notes
+	        int counter1 = 0;//variable for saving the index for wrote notes
             
 	        
 
@@ -48,10 +52,34 @@ public class InitFunction extends Event{
 	        int year = sc.nextInt();
 
 	        Calendar calendar = Calendar.getInstance();// setting the date for program
+            
+                dateFormat.setLenient(false);
 
 	        calendar.set(Calendar.DAY_OF_MONTH, day);
-	        calendar.set(Calendar.MONTH, month);
+	        calendar.set(Calendar.MONTH, month - 1);
 	        calendar.set(Calendar.YEAR, year);
+
+	        try{
+
+	               File file = new File("" + dateFormat.format(calendar.getTime()) + ".txt");//initialization of file
+
+                   
+
+                    if(!file.exists() ){
+
+                            file.createNewFile();
+
+                        }
+
+                }catch(FileNotFoundException error){
+
+                    System.err.println("Error with creating of file for saving data");
+
+                }catch(IOException err1){
+
+                    System.err.println("Error with creating of file for saving data");
+
+                }        
 
 	        System.out.println("Type command \"write\", if you want to make a note.");	
 
@@ -107,22 +135,49 @@ public class InitFunction extends Event{
                                             i++;
                                             counter++;
 
-                                   }
+                             }
 
-                                   }catch(ArrayIndexOutOfBoundsException e){
+                        }catch(ArrayIndexOutOfBoundsException e){
 
-                    	             System.err.println("You exceed the limit of notes.");
-                                     System.err.println("Now you can only read all the notes, or pointly note, or look to past notes");
-                                     System.out.println("If you want, you can write your data in a file");           
+                    	  System.err.println("You exceed the limit of notes.");
+                          System.err.println("Now you can only read all the notes, or pointly note, or look to past notes");
+                          System.out.println("If you want, you can write your data in a file");           
                            	
-                                     i++;
-                                   }
+                          i++;
+                          counter1 = counter;
+
+                        }
 
 		        }
 
 		        if(command.equals("write to file")){
 
-                               func.writeToFile(notes);
+                               
+                               try{
+                               	
+                                       File file = new File("" + dateFormat.format(calendar.getTime()) + ".txt");
+
+                                       PrintWriter pw = new PrintWriter(file.getAbsoluteFile());
+                                       
+
+                                      
+
+                                       for(int coun = 0; coun < notes.length; coun++){
+
+                                            pw.println(notes[coun]);
+
+                                         }
+
+                                        pw.close(); 
+
+                                       }catch(IOException err){
+
+        	                              System.err.println("You have some error with file");
+
+                                       }
+
+                                   
+                               System.out.println("Your data successfully saved.");         
                                i++;
 
 		        }

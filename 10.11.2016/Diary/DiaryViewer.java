@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 public class DiaryViewer extends Event{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
 
         InitFunction ini = new InitFunction();
 
