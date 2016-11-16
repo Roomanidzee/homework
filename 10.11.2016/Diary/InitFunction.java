@@ -134,6 +134,7 @@ public class InitFunction extends Event{
 			                    checkRatio++;
                                             i++;
                                             counter++;
+                                            counter1 = counter;
 
                              }
 
@@ -144,7 +145,7 @@ public class InitFunction extends Event{
                           System.out.println("If you want, you can write your data in a file");           
                            	
                           i++;
-                          counter1 = counter;
+                          
 
                         }
 
@@ -162,7 +163,7 @@ public class InitFunction extends Event{
 
                                       
 
-                                       for(int coun = 0; coun < notes.length; coun++){
+                                       for(int coun = 0; coun < counter1; coun++){
 
                                             pw.println(notes[coun]);
 
