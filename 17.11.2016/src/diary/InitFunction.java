@@ -1,4 +1,4 @@
-package diary;
+﻿package diary;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;//all imports, what i need
@@ -275,7 +275,7 @@ public class InitFunction extends Event{
 
 		        }
 
-		        if(command.equals("read at")){
+		        if(command.equals("read all at")){
 
 		        	System.out.println("Please, type the index of note");
 		        	System.out.println("Start index is 0");
