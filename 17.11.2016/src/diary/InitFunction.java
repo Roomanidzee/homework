@@ -1,4 +1,4 @@
-﻿package diary;
+package diary;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;//all imports, what i need
@@ -310,6 +310,13 @@ public class InitFunction extends Event{
 
 		        System.out.println();
 	        }
-           }        
+           }
+                
+                else{
+                    
+                    System.out.println("Please, write a correct command.");
+                    System.out.println("To continue to work with program, restart it.");
+                    
+                }     
       }   
 }
