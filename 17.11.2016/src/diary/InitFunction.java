@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+
 /**
  *
  * @author Андрей
@@ -84,6 +85,10 @@ public class InitFunction extends Event{
                                         
                                     }
                                     
+                                }else{
+                                    
+                                     System.err.println("You didn't make notes on that date");
+                                    
                                 }
                                 
                             }catch(FileNotFoundException error1){
@@ -103,6 +108,7 @@ public class InitFunction extends Event{
 
 	            System.out.println("Write me the date, when do you want to make a note.");
 	            System.out.println("Write it in a format dd.MM.yyyy, one by one");
+                    System.out.println("Please, type only the one number, when you type the day, month and year.");
                 
                     System.out.print("First, type me the day: ");
 	            int day = sc.nextInt();
@@ -228,9 +234,9 @@ public class InitFunction extends Event{
 
                                     }catch(ArrayIndexOutOfBoundsException e){
 
-                    	                 System.err.println("You exceed the limit of notes.");
-                                         System.err.println("Now you can only read all the notes, or pointly note, or look to past notes");
-                                         System.err.println("If you want, you can write your data in a file");           
+                    	                 System.out.println("You exceed the limit of notes.");
+                                         System.out.println("Now you can only read all the notes, or pointly note, or look to past notes");
+                                         System.out.println("If you want, you can write your data in a file");           
                            	
                                          i++;
                           
