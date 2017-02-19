@@ -6,29 +6,29 @@ package player.trackproperty;
  */
 public class Track {
     
-    private static String title;
-    private static String format;
-    private static int duration;
+    private String title;
+    private String format;
+    private int duration;
     
     private static Track instance = null;
     
-    private Track(String trackTitle, String trackFormat, int trackDuration){
-        
-        Track.title = trackTitle;
-        Track.format = trackFormat;
-        Track.duration = trackDuration;
-        
-    }
+    private Track(){}
     
     
     public static Track getInstance(){
         
         if(Track.instance  == null){
             
-            instance = new Track("test", ".mp3", 5);
+            instance = new Track();
                        
         }
         return instance;
+    }
+    
+    public void setTitle(String songTitle){
+        
+        this.title = songTitle;
+        
     }
     
     public String getTitle(){
@@ -38,9 +38,21 @@ public class Track {
     }
   
     
+    public void setFormat(String songFormat){
+        
+        this.format = songFormat;
+        
+    }
+    
     public String getFormat(){
         
         return format;
+        
+    }
+    
+    public void setDuration(int songDuration){
+        
+        this.duration = songDuration;
         
     }
     
