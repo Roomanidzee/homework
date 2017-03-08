@@ -32,7 +32,7 @@ public class MyCollectionViewer {
         
         System.out.println();
         
-        System.out.println("Заолняем коллекцию 1 элементами из коллекции 2");
+        System.out.println("Заполняем коллекцию 1 элементами из коллекции 2");
         System.out.println();
         
         collec1.addAll(collec2);

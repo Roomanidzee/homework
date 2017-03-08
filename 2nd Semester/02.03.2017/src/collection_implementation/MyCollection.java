@@ -8,14 +8,15 @@ import java.util.NoSuchElementException;
 /**
  *
  * @author Андрей Романов <steampart@gmail.com>
+ * 
  */
+
 public class MyCollection<E> extends AbstractCollection<E>{
 
     private E[] valueArray;//массив для хранения данных
     private int size = 0;//счетчик размера
-    private Iterator<E> iter;//переменная для итератора
-    private int k = 0;//счетчик для проверки массива
-    private int index = 0;//переменная для хранения индекса массива
+    private Iterator<E> iter;//переменная для итератора №1
+    private Iterator<E> iter1;    
     
     public MyCollection(){
         
@@ -47,6 +48,25 @@ public class MyCollection<E> extends AbstractCollection<E>{
             this.value = (E) valueArray[this.current];
             this.current++;
             return this.value;
+            
+        }
+        
+        @Override
+        public void remove(){
+            
+            valueArray[this.current] = null;
+            int temp = current;
+        
+            while(temp < size){
+            
+                valueArray[temp] = valueArray[temp + 1];
+                valueArray[temp + 1] = null;
+            
+                temp++;
+            
+            }
+        
+            size--;
             
         }
         
@@ -253,62 +273,14 @@ public class MyCollection<E> extends AbstractCollection<E>{
         
     }
     
-    @Override
-    public boolean remove(Object o){
-        //удаляет элементы из коллекции
-        if(o == null){
-            
-            throw new NullPointerException("There are no null elements in this "
-                    + "collection");
-            
-        }
-        
-        for(int i = 0;i < size();i++){
-            
-            if(this.valueArray[i] == o){
-                
-                this.index = i;
-                break;
-                
-            }else{
-                
-                this.k++;
-                
-            }
-            
-        }
-        
-        if(this.k == size()){
-            
-            throw new NoSuchElementException("No such element");
-            
-        }
-        
-        this.valueArray[index] = null;
-        int temp = index;
-        
-        while(temp < this.size){
-            
-            this.valueArray[temp] = this.valueArray[temp + 1];
-            this.valueArray[temp + 1] = null;
-            
-            temp++;
-            
-        }
-        
-        this.size--;
-        
-        return true;
-        
-    }
     
     public boolean removeAll(MyCollection<?> c){
         //удаляет элементы другой коллекции из первоначальной
-        Iterator<E> iter1 = (Iterator<E>) c.iterator();
+        Iterator<E> iter2 = (Iterator<E>) c.iterator();
         
-        while(iter1.hasNext()){
+        while(iter2.hasNext()){
             
-            if(iter1.next() == null){
+            if(iter2.next() == null){
                 
                 throw new NullPointerException("You can't remove collection "
                         + "with null elements");
@@ -320,12 +292,13 @@ public class MyCollection<E> extends AbstractCollection<E>{
         for(int i = 0; i < size(); i++){
             
             this.iter = (Iterator<E>) c.iterator();
+            this.iter1 = iterator();
             
-            while(iter.hasNext()){
+            while(this.iter.hasNext() && this.iter1.hasNext()){
             
-               if(this.valueArray[i] == iter.next()){
+               if(iter1.next() == iter.next()){
                 
-                    remove(this.valueArray[i]);
+                    iter1.remove();
                 
                 }
             
@@ -339,11 +312,11 @@ public class MyCollection<E> extends AbstractCollection<E>{
     public boolean retainAll(MyCollection<?> c){
         //удаляет те элементы из первоначальной коллекции,
         //которых нет в другой коллекции
-        Iterator<E> iter1 = (Iterator<E>) c.iterator();
+        Iterator<E> iter2 = (Iterator<E>) c.iterator();
         
-        while(iter1.hasNext()){
+        while(iter2.hasNext()){
             
-            if(iter1.next() == null){
+            if(iter2.next() == null){
                 
                 throw new NullPointerException("You can't retain collection "
                         + "with null elements");
@@ -355,12 +328,13 @@ public class MyCollection<E> extends AbstractCollection<E>{
         for(int i = 0; i < size(); i++){
             
             this.iter = (Iterator<E>) c.iterator();
+            this.iter1 = iterator();
             
-            while(this.iter.hasNext()){
+            while(this.iter.hasNext() && this.iter1.hasNext()){
             
-               if(this.valueArray[i] != this.iter.next()){
+               if(this.iter1.next() != this.iter.next()){
                 
-                   remove(this.valueArray[i]);
+                   this.iter1.remove();
                 
                }
             
