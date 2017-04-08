@@ -1,6 +1,7 @@
 package processing;
 
 import interfaces.Command;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -19,6 +20,7 @@ public class LaunchFunction {
         Scanner sc = new Scanner(System.in);        
         command = p.getCurrentDirectory();        
         path =  command.executePath(System.getProperty("user.home"));
+        final Path originalPath = Paths.get(System.getProperty("user.home"));
         boolean exit = false;
         
         System.out.println("Список возможных команд: exit, ls, cd, rm, mv, cp");
@@ -96,13 +98,22 @@ public class LaunchFunction {
                     
                     if(userNextCommand.equals("~")){
                         
-                        path = command.executePath(System.getProperty("user.home"));
+                        path = command.executePath(originalPath.toString());
                         
                     }
                     
                     if(path.toString().contains(userNextCommand)){
                         
-                        Path path1 = Paths.get(userNextCommand).toAbsolutePath();
+                        Path path1 = null;
+                        try {
+                            
+                             path1 = Paths.get(userNextCommand).toRealPath();
+                             
+                        } catch (IOException ex) {
+                            
+                             System.err.println("Нет такого пути");
+                             
+                        }
                         
                         path = command.executePath(path.relativize(path1).toString());
                         

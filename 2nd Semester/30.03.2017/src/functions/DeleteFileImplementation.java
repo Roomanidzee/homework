@@ -18,7 +18,7 @@ public class DeleteFileImplementation implements DeleteFile{
         
         try {
             
-            Path path = Paths.get(pathToDirectory).toAbsolutePath();
+            Path path = Paths.get(pathToDirectory).toRealPath();
             
             Files.delete(path);
             
@@ -34,7 +34,16 @@ public class DeleteFileImplementation implements DeleteFile{
     @Override
     public void deleteRecursive(String pathToDirectory) {
         
-        Path path = Paths.get(pathToDirectory).toAbsolutePath();
+        Path path = null;
+        try {
+            
+            path = Paths.get(pathToDirectory).toRealPath();
+            
+        } catch (IOException ex) {
+            
+           System.err.println("Нет такого пути");
+           
+        }
         
         File dir = path.toFile();
         
@@ -69,7 +78,17 @@ public class DeleteFileImplementation implements DeleteFile{
     @Override
     public void deleteFolder(String pathToDirectory) {
         
-        Path path = Paths.get(pathToDirectory).toAbsolutePath();
+        Path path = null;
+        
+        try {
+            
+            path = Paths.get(pathToDirectory).toRealPath();
+            
+        } catch (IOException ex) {
+            
+            System.err.println("Нет такого пути");
+            
+        }
         
         File dir = path.toFile();
         
@@ -93,7 +112,16 @@ public class DeleteFileImplementation implements DeleteFile{
     @Override
     public void deleteAll(String pathToDirectory) {
         
-        Path path = Paths.get(pathToDirectory).toAbsolutePath();
+        Path path = null;
+        try {
+            
+            path = Paths.get(pathToDirectory).toRealPath();
+            
+        } catch (IOException ex) {
+            
+            System.err.println("Нет такого пути");
+            
+        }
         
         File dir = path.toFile();
         

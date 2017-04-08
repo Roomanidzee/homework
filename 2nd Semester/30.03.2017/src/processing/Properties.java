@@ -77,8 +77,5 @@ public class Properties {
      */
     public CopyFileCommand getCp() {
         return cp;
-    }
-
-    
-    
+    }    
 }

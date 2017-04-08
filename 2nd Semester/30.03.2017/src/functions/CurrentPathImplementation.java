@@ -1,6 +1,7 @@
 package functions;
 
 import interfaces.CurrentPath;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 /**
@@ -12,7 +13,17 @@ public class CurrentPathImplementation implements CurrentPath{
     @Override
     public Path showPath(String pathToFile) {
         
-        Path path = Paths.get(pathToFile).toAbsolutePath();
+        Path path = null;
+        
+        try{
+            
+            path = Paths.get(pathToFile).toRealPath();
+            
+        }catch(IOException ex){
+            
+            System.err.println("Нет такого пути");
+            
+        }       
         
         return path;
         

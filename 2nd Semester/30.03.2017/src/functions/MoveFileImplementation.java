@@ -16,9 +16,22 @@ public class MoveFileImplementation implements MoveFile{
 
     @Override
     public void moveTo(String src, String dest) {
-       
-        Path source = Paths.get(src).toAbsolutePath();
-        Path destination = Paths.get(dest).toAbsolutePath();
+        
+        Path source = null;
+        Path destination  = null;
+        
+        try{
+            
+            source = Paths.get(src).toRealPath();
+            destination = Paths.get(dest).toRealPath();
+            
+        }catch(IOException ex){
+            
+            System.err.println("Нет таких путей");
+            
+        }
+        
+        
         
         File tempFile = destination.toFile();
         

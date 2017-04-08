@@ -38,7 +38,17 @@ public class ShowFileInfoImplementation implements ShowFileInfo{
     @Override
     public void showFiles(String pathToDirectory) {
         
-        Path path = Paths.get(pathToDirectory).toAbsolutePath();
+        Path path = null;
+        
+        try {
+            
+            path = Paths.get(pathToDirectory).toRealPath();
+            
+        } catch (IOException ex) {
+            
+            System.err.println("Нет таких путей");
+            
+        }
         
         File dir = path.toFile();
         
@@ -68,7 +78,17 @@ public class ShowFileInfoImplementation implements ShowFileInfo{
     @Override
     public void showFilesWithInfo(String pathToDirectory) {
         
-        Path path = Paths.get(pathToDirectory).toAbsolutePath();
+        Path path = null;
+        
+        try {
+            
+            path = Paths.get(pathToDirectory).toRealPath();
+            
+        } catch (IOException ex) {
+            
+            System.err.println("Нет таких путей");
+            
+        }
         
         File dir = path.toFile();
         
@@ -141,7 +161,17 @@ public class ShowFileInfoImplementation implements ShowFileInfo{
     @Override
     public void showAllFiles(String pathToDirectory) {
        
-        Path path = Paths.get(pathToDirectory).toAbsolutePath();
+        Path path = null;
+        
+        try {
+            
+            path = Paths.get(pathToDirectory).toRealPath();
+            
+        } catch (IOException ex) {
+            
+            System.err.println("Нет таких путей");
+            
+        }
         
         File dir = path.toFile();
         
@@ -197,7 +227,17 @@ public class ShowFileInfoImplementation implements ShowFileInfo{
     @Override
     public void showAllFilesFull(String pathToDirectory) {
         
-        Path path = Paths.get(pathToDirectory).toAbsolutePath();
+        Path path = null;
+        
+        try {
+            
+            path = Paths.get(pathToDirectory).toRealPath();
+            
+        } catch (IOException ex) {
+            
+            System.err.println("Нет таких путей");
+            
+        }
         
         File dir = path.toFile();
         

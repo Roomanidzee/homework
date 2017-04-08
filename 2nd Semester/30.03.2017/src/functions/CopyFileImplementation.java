@@ -16,8 +16,20 @@ public class CopyFileImplementation implements CopyFile{
     @Override
     public void copyToFile(String src, String dest) {
         
-        Path source = Paths.get(src).toAbsolutePath();
-        Path newdir = Paths.get(dest).toAbsolutePath();
+        Path source = null;
+        Path newdir = null;
+        
+        try{
+            
+            source = Paths.get(src).toRealPath();
+            newdir = Paths.get(dest).toRealPath();
+            
+        }catch(IOException error){
+            
+            System.err.println("Нет такого пути");
+            
+        }
+        
         
         File dir = newdir.toFile();
         
