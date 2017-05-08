@@ -6,7 +6,7 @@ package com.romanidze.siteparsehomework.processing;
  */
 public class RegularExpressions {
     //описание данных регулярных выражений смотреть в файле 
-    //src/main/resources/Описание_регулярных_выражений.txt
+    //src/main/resources/RegularExpressionsExplanation.txt
     private final String PRICE_REGEXP_FIRST = "(?<=\\<div class=\\\"lead pull-right"
             + " el-product-full-price\\\"\\>"
             + "<!--price-->)(.+?)(?=\\<!--\\/price--><\\/div\\>)";
@@ -20,6 +20,8 @@ public class RegularExpressions {
             + "(.+?)(?=\\<\\/div\\>)";
     
     private final String REPLACE_ALL_ATTRIBUTES = "<(\\w+)(?:([\\'\"]).*?\\2|.)*?>";
+    
+    private final String GET_HREF = "\\s*(?i)data-url\\s*=\\s*(\\\"([^\"]*\\\")|'[^']*'|([^'\">\\s]+))";
     
     public String getPriceRegexpFirst(){
         
@@ -48,6 +50,12 @@ public class RegularExpressions {
     public String getReplacingRegexp(){
         
         return this.REPLACE_ALL_ATTRIBUTES;
+        
+    }
+    
+    public String getHrefRegexp(){
+        
+        return this.GET_HREF;
         
     }
     
